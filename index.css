@@ -81,7 +81,7 @@ header .login,header .reg{
 	font-size:14px;
 	letter-spacing: 1px;
 	color:#666;
-	background:url(login_header.png);
+	background:url(images/login_header.png);
 	cursor:move;
 
 }
@@ -120,7 +120,7 @@ header .login,header .reg{
 	width:143px;
 	height:33px;
 	border:none;
-	background:url(reg.png) no-repeat;
+	background:url(images/reg.png) no-repeat;
 	cursor: pointer;
 
 }
@@ -144,17 +144,17 @@ header .login,header .reg{
 	display:none;
 }
 #reg dl dd span.info{
-	background: url(reg_info2.png) no-repeat;	
+	background: url(images/reg_info2.png) no-repeat;	
 }
 #reg dl dd span.error{
-	background: url(reg_error.png) no-repeat;
+	background: url(images/reg_error.png) no-repeat;
 }
 #reg dl dd span.succ{
 	height:14px;
 	line-height: 14px;
 	padding:0 0 0 20px;
 	color:green;
-	background: url(reg_succ.png) no-repeat;
+	background: url(images/reg_succ.png) no-repeat;
 }
 #reg dl dd span.info_user{
 	height:43px;
@@ -180,7 +180,7 @@ header .login,header .reg{
 	width:260px;
 	height:102px;
 	padding:4px 0 0 16px;
-	background:url(reg_info3.png) no-repeat;
+	background:url(images/reg_info3.png) no-repeat;
 	top:5px;
 	left:295px;
 }
@@ -286,7 +286,7 @@ header .login,header .reg{
 	letter-spacing: 1px;
 	color:#666;
 	cursor:move;
-	background:url(login_header.png);
+	background:url(images/login_header.png);
 
 }
 #login h3 img{
@@ -330,7 +330,7 @@ header .login,header .reg{
 nav{
 	width:465px;
 	height:52px;
-	background:url(nav_bg.png) no-repeat;
+	background:url(images/nav_bg.png) no-repeat;
 	margin:50px auto 0 auto;
 	position:relative;
 }
@@ -363,7 +363,7 @@ nav .nav_bg{
 	display: block;
 	width:85px;
 	height:52px;
-	background:url(nav_over.png) no-repeat 0 11px;
+	background:url(images/nav_over.png) no-repeat 0 11px;
 	position:absolute;
 	left:20px;
 	top:0px;
@@ -384,7 +384,7 @@ nav .nav_bg{
 	height:30px;
 	line-height: 30px;
 	font-size: 14px;
-	background:url(side_h.png);
+	background:url(images/side_h.png);
 	text-indent: 10px;
 	border:1px solid #ccc;
 	border-bottom: none;
@@ -399,7 +399,7 @@ nav .nav_bg{
 #sidebar ul li{
 	height:30px;
 	line-height: 30px;
-	background: url(arrow4.gif) no-repeat 12px 45%;
+	background: url(images/arrow4.gif) no-repeat 12px 45%;
 	text-indent:30px;
 }
 #sidebar ul li a{
@@ -446,7 +446,7 @@ nav .nav_bg{
 	line-height: 26px;
 	text-decoration: none;
 	color:#666;
-	background-image: url(share_bg.png);
+	background-image: url(images/share_bg.png);
 	background-repeat:no-repeat;
 	text-indent: 30px;
 }
@@ -512,7 +512,7 @@ nav .nav_bg{
 	top:7px;
 	left:120px;
 	padding: 0 0 0 13px;
-	background-image: url(share_bg.png);
+	background-image: url(images/share_bg.png);
 	background-repeat:no-repeat;
 	text-decoration: none;
 	color:#666;
@@ -529,6 +529,6 @@ nav .nav_bg{
 	position:absolute;
 	top:-230;
 	left:210;
-	background-image: url(share.png);
+	background-image: url(images/share.png);
 	background-repeat:no-repeat;
 }
