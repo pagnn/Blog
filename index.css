@@ -434,6 +434,7 @@ nav .nav_bg{
 	float:left;
 	margin:10px 0;
 	position: relative;
+	overflow: hidden;
 }
 #banner img{
 	display: block;
@@ -463,12 +464,16 @@ nav .nav_bg{
 	top:125px;
 	left:0px;
 	background: #333;
-	opacity: 0.1;
+	opacity: 0.3;
 	z-index: 3;
 
 }
 #banner strong{
-	z-index: 2;
+	position: absolute;
+	top:130px;
+	left:10px;
+	color:white;
+	z-index: 4;
 
 }
 #share{

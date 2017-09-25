@@ -445,8 +445,65 @@ $(function(){
 			$(this).submit();
 		}
 	})
-	$('#banner img').hide();
-	$('#banner img').eq(0).show();
+	//轮播器初始化
+	$('#banner img').opacity(0);
+	$('#banner img').eq(0).opacity(100);
+	$('#banner ul li').eq(0).css('color','#333');
+	$('#banner strong').html($('#banner img').eq(0).attr('alt'));
+	//手动轮播器
+	$('#banner ul li').hover(function(){
+		clearInterval(banner_timer);
+		banner(this,banner_index==0?$('#banner ul li').length()-1:banner_index-1);
+	},function(){
+		banner_index=$(this).index()+1;
+		banner_timer=setInterval(banner_fn,2000);		
+	})
+	//自动轮播器
+	var banner_index=1;
+	var banner_type=2;
+	var banner_timer=setInterval(banner_fn,2000);
+
+	function banner(obj,prev){
+		if(banner_type==1){
+			$('#banner img').eq(prev).animate({
+				attr:'o',
+				target:0,
+				t:30,
+				step:10,
+			}).css('z-index','2');
+			$('#banner img').eq($(obj).index()).animate({
+				attr:'o',
+				target:150,
+				t:30,
+				step:10,
+			}).css('z-index','2');			
+		}else if(banner_type==2){
+			$('#banner img').eq(prev).animate({
+				attr:'y',
+				target:150,
+				t:30,
+				step:10,
+			}).css('z-index','2').opacity(100);
+			$('#banner img').eq($(obj).index()).animate({
+				attr:'y',
+				target:0,
+				t:30,
+				step:10,
+			}).css('top','-150px').css('z-index','2').opacity(100);			
+		}
+
+
+		$('#banner ul li').css('color','#999');
+		$(obj).css('color','#333');
+		$('#banner strong').html($('#banner img').eq($(obj).index()).attr('alt'));		
+	}
+	function banner_fn(){
+		if(banner_index>=$('#banner ul li').length()){
+			banner_index=0;
+		}
+		banner($('#banner ul li').eq(banner_index).first(),banner_index==0?$('#banner ul li').length()-1:banner_index-1);
+		banner_index++;			
+	}
 	//分享侧栏初始化位置
 	$("#share").css('top',(getInner().height-parseInt(getStyle($('#share').first(),'height')))/2+"px");
 	$(window).bind('scroll',function(){

@@ -221,6 +221,27 @@ Base.prototype.removeRule = function (num, index) {
 	deleteRule(sheet, index);
 	return this;
 }
+//获取属性
+Base.prototype.attr=function(attr){
+	return this.elements[0][attr];
+}
+//设置opacity
+Base.prototype.opacity=function(num){
+	for(var i=0;i<this.elements.length;i++){
+		this.elements[i].style.opacity=num/100;
+	}
+	return this;	
+}
+//获取索引
+Base.prototype.index=function(){
+	var children=this.elements[0].parentNode.children;
+	for(var i=0;i<children.length;i++){
+		if(this.elements[0]==children[i]){
+			return i;
+		}
+	};
+
+}
 //获取表单元素
 Base.prototype.form=function(name){
 	for(var i=0;i<this.elements.length;i++){
