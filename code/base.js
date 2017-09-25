@@ -155,6 +155,9 @@ Base.prototype.eq = function (num) {
 	this.elements[0] = element;
 	return this;
 }
+Base.prototype.length=function(){
+	return this.elements.length;
+}
 //获取当前节点的下一个元素节点
 Base.prototype.next=function(){
 	for (var i = 0; i < this.elements.length; i ++) {
@@ -231,7 +234,7 @@ Base.prototype.value=function (value) {
 		if (arguments.length == 0) {
 			return this.elements[i].value;
 		}
-		this.elements[i].value=value ;
+		this.elements[i].value=value;
 	}
 	return this;
 }

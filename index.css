@@ -255,6 +255,22 @@ header .login,header .reg{
 	border-bottom: 1px solid #e5edf2;
 	cursor: pointer;
 }
+#reg dl dd.birthday select{
+	width:70px;
+}
+#reg span.clear{
+	color:#06f;
+	cursor: pointer;
+}
+
+#reg dl dd span.error_ques{
+	top:3px;
+	left:295px;
+}
+#reg dl dd span.error_birthday{
+	top:3px;
+	left:295px;
+}
 #login{
 	width:350px;
 	height:250px;
@@ -408,9 +424,52 @@ nav .nav_bg{
 }
 #index{
 	width:630px;
-	height:500px;
+	height:570px;
 	background:#eee;
 	float:right;
+}
+#banner{
+	width:900px;
+	height:150px;
+	float:left;
+	margin:10px 0;
+	position: relative;
+}
+#banner img{
+	display: block;
+	position: absolute;
+	top:0px;
+	left:0px;
+	z-index: 1;
+}
+#banner ul{
+	position: absolute;
+	top:128px;
+	left:420px;	
+	z-index: 4;
+}
+#banner ul li{
+	float:left;
+	padding:0 5px;
+	font-size:16px;
+	color:#999;
+	cursor: pointer;
+
+}
+#banner span{
+	position: absolute;
+	width:900px;
+	height:25px;
+	top:125px;
+	left:0px;
+	background: #333;
+	opacity: 0.1;
+	z-index: 3;
+
+}
+#banner strong{
+	z-index: 2;
+
 }
 #share{
 	width:210px;

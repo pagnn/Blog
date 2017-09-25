@@ -96,6 +96,8 @@ $(function(){
 	})
 	//拖拽
 	$("#reg").drag([$("#reg h3").first()]);
+	//初始化表单
+	$('form').first().reset();
 	//用户名验证
 	$('form').form('user').bind('focus',function(){
 		$('#reg .info_user').show();
@@ -104,7 +106,7 @@ $(function(){
 	}).bind('blur',function(){
 		if(trim($(this).value())==''){
 			$('#reg .info_user').hide();
-		}else if(!/[\w]{2,20}/.test(trim($(this).value()))){
+		}else if(!check_user()){
 			$('#reg .error_user').show();
 			$('#reg .info_user').hide();
 			$('#reg .succ_user').hide();
@@ -115,6 +117,12 @@ $(function(){
 		};
 		
 	});	
+	function check_user(){
+		if(/[\w]{2,20}/.test(trim($('form').form('user').value()))){
+			return true;
+		}
+		return false;
+	}
 	//密码验证
 	$('form').form('pass').bind('focus',function(){
 		$('#reg .info_pass').show();
@@ -124,7 +132,7 @@ $(function(){
 		if(trim($(this).value())==''){
 			$('#reg .info_pass').hide();			
 		}else{
-			if(check_pass(this)){
+			if(check_pass()){
 				$('#reg .info_pass').hide();
 				$('#reg .error_pass').hide();
 				$('#reg .succ_pass').show();			
@@ -138,13 +146,12 @@ $(function(){
 	});	
 	//密码强度验证
 	$('form').form('pass').bind('keyup',function(){
-		check_pass(this);
+		check_pass();
 	})	
-	function check_pass(_this){
-		var value=trim($(_this).value());
+	function check_pass(){
+		var value=trim($('form').form('pass').value());
 		var value_length=value.length;
 		var code_length=0;
-		var flag=false;
 		if(value_length>=6&&value_length<=20){
 			$('#reg .info_pass .q1').html('●').css('color','green');
 		}else{
@@ -173,24 +180,29 @@ $(function(){
 			$('#reg .info_pass .q3').html('○').css('color','#ccc');			
 		}
 		//安全级别
+
 		if(value_length>=10&&code_length>=3){
 			$('#reg info_pass .s').css('color','green');
 			$('#reg info_pass .s4').html('高');
 		}else if(value_length>=8&&code_length>=2){
 			$('#reg info_pass .s1').css('color','#f60');
 			$('#reg info_pass .s2').css('color','#f60');
+			$('#reg info_pass .s3').css('color','#ccc');			
 			$('#reg info_pass .s4').html('中').css('color','#f60');			
 		}else if(value_length>=1){
 			$('#reg info_pass .s1').css('color','brown');
+			$('#reg info_pass .s2').css('color','#ccc');
+			$('#reg info_pass .s3').css('color','#ccc');			
 			$('#reg info_pass .s4').html('低').css('color','brown');			
 		}else{
 			$('#reg info_pass .s').css('color','#ccc');
 			$('#reg info_pass .s4').html('');				
 		}
 		if(value_length>=6&&value_length<=20&&!/\s/.test(value)&&code_length>=2){
-			flag=true;
+			return true;
+		}else{
+			return false;
 		}
-		return flag;
 	}
 	//密码确认
 	$('form').form('notpass').bind('focus',function(){
@@ -201,7 +213,7 @@ $(function(){
 		if(trim($(this).value())==''){
 			$('#reg .info_notpass').hide();			
 		}else{
-			if(trim($(this).value())==trim($('form').form('pass').value())){
+			if(check_notpass()){
 				$('#reg .info_notpass').hide();
 				$('#reg .error_notpass').hide();
 				$('#reg .succ_notpass').show();	
@@ -212,6 +224,18 @@ $(function(){
 			}
 		}	
 	});	
+	function check_notpass(){
+		if(trim($('form').form('notpass').value())==trim($('form').form('pass').value())){
+			return true;
+		}
+		return false;
+	}
+	function check_ques(){
+		if($('form').form('ques').value()==0){
+			return false;
+		}
+		return true;
+	}
 	//回答问题
 	$('form').form('ans').bind('focus',function(){
 		$('#reg .info_ans').show();
@@ -221,7 +245,7 @@ $(function(){
 		if(trim($(this).value())==''){
 			$('#reg .info_ans').hide();			
 		}else{
-			if(trim($(this).value()).length>=2&&trim($(this).value()).length<=32){
+			if(check_ans()){
 				$('#reg .info_ans').hide();
 				$('#reg .error_ans').hide();
 				$('#reg .succ_ans').show();	
@@ -232,6 +256,12 @@ $(function(){
 			}
 		}	
 	});	
+	function check_ans(){
+		if(trim($('form').form('ans').value()).length>=2&&trim($('form').form('ans').value()).length<=32){
+			return true;
+		}
+		return false;
+	}
 	//电子邮件
 	$('form').form('email').bind('focus',function(){
 		$('#reg .all_email').show();
@@ -243,7 +273,7 @@ $(function(){
 		if(trim($(this).value())==''){
 			$('#reg .info_email').hide();			
 		}else{
-			if(/^[\w\-\.]+@[\w\-]+(\.[a-zA-Z]{2,4}){1,2}$/.test(trim($(this).value()))){
+			if(check_email()){
 				$('#reg .info_email').hide();
 				$('#reg .error_email').hide();
 				$('#reg .succ_email').show();	
@@ -254,11 +284,19 @@ $(function(){
 			}
 		}	
 	});	
+	function check_email(){
+		if(/^[\w\-\.]+@[\w\-]+(\.[a-zA-Z]{2,4}){1,2}$/.test(trim($('form').form('email').value()))){
+			return true;
+		}
+		return false;
+	}
 	$('#reg .all_email li').hover(function(){
 		$(this).css('background','#e5edf2').css('color','#369');
 	},function(){
 		$(this).css('background','none').css('color','#666');		
 	});
+	//电子邮件补全系统键入
+
 	//电子邮件补全系统点击获取
 	$('#reg .all_email li').bind('mousedown',function(){
 		$('form').form('email').value($(this).Text());
@@ -266,18 +304,149 @@ $(function(){
 	// $('#reg .all_email li').click(function(){
 	// 	alert('123');
 	// })；//click事件是在弹起后触发的，而blur失去了焦点后，没有点击弹起的元素，导致click无法触发；
-
-
-
-	$('form').form('email').bind('keyup',function(){
+	$('form').form('email').bind('keyup',function(event){
 		if($(this).value().indexOf('@')==-1){
 			$('#reg .all_email').show();			
 			$('#reg .all_email li span').html($(this).value());
 		}else{
 			$('#reg .all_email').hide();
 		}
-
+		if(event.keyCode==40){
+			if(this.index==undefined||this.index>=$('#reg .all_email li').length()-1){
+				this.index=0;
+			}else{
+				this.index++;
+			}
+			$('#reg .all_email li').css('background','none');
+			$('#reg .all_email li').css('color','#666');
+			$('#reg .all_email li').eq(this.index).css('background','#e5edf2');
+			$('#reg .all_email li').eq(this.index).css('color','#369');
+		}
+		if(event.keyCode==38){
+			if(this.index==undefined||this.index<0){
+				this.index=0;
+			}else{
+				this.index--;
+			}
+			$('#reg .all_email li').css('background','none');
+			$('#reg .all_email li').css('color','#666');
+			$('#reg .all_email li').eq(this.index).css('background','#e5edf2');
+			$('#reg .all_email li').eq(this.index).css('color','#369');
+		}
+		if(event.keyCode==13){
+			$(this).value($('#reg .all_email li').eq(this.index).Text());
+			$('#reg .all_email').hide();
+			this.index=undefined;
+		}
 	})
+	//生日
+	var year=$('form').form('year');
+	var month=$('form').form('month');
+	var date=$('form').form('date');
+	var day30=[4,6,9,11];
+	var day31=[1,3,5,7,8,10,12];
+	var cur_day=0;
+	//注入年
+	for(var i=1950;i<=2017;i++){
+		year.first().add(new Option(i,i),undefined);
+	}
+	//注入月
+	for(var i=1;i<=12;i++){
+		month.first().add(new Option(i,i),undefined);
+	}
+	//注入日
+	year.bind('change',select_day);
+	month.bind('change',select_day);
+	date.bind('change',function(){
+		if(check_birthday()){
+			$('#reg .error_birthday').hide();
+		}
+	})
+	function select_day(){
+		if(year.value()!=0&&month.value()!=0){
+			date.first().options.length=1;
+			if(inArray(day31,parseInt(month.value()))){
+				cur_day=31;
+			}else if(inArray(day30,parseInt(month.value()))){
+				cur_day=30;			
+			}else{
+				if((parseInt(year.value())%4==0&&parseInt(year.value())%100!=0)||parseInt($(this).value())%400==0){
+					cur_day=29;				
+				}else{
+					cur_day=28;				
+				}
+
+			}
+			for(vari=1;i<=cur_day;i++){
+				date.first().add(new Option(i,i),undefined);				
+			}
+		}else{
+			date.first().options.length=1;			
+		}		
+	}
+	function check_birthday(){
+		if(year.value()!=0&&month.value()!=0&&date.value()!=0){
+			return true;
+		}
+		return false;
+	}
+	//备注
+	$('form').form('ps').bind('keyup',check_ps).bind('paste',function(){
+		setTimeout(check_ps(),1);
+	});
+	$('#reg .clear').click(function(){
+		$('form').form('ps').value($('form').form('ps').value().substring(0,200));
+		check_ps();
+	})
+	function check_ps(){
+		var num=200-$('form').form('ps').value().length;
+		if(num>=0){
+			$('#reg .ps').eq(0).show();
+			$('#reg .num').eq(0).html(num);
+			$('#reg .ps').eq(1).hide();
+		}else{
+			$('#reg .ps').eq(1).show();
+			$('#reg .num').eq(1).html(-num);
+			$('#reg .ps').eq(0).hide();			
+		}		
+	}
+	//提交
+	$('form').form('sub').click(function(){
+		var flag=true;
+		if(!check_user()){
+			flag=false;
+			$('#reg .error_user').show();			
+		}
+		if(!check_pass()){
+			flag=false;
+			$('#reg .error_pass').show();				
+		}
+		if(!check_pass()){
+			flag=false;
+			$('#reg .error_notpass').show();				
+		}
+		if(!check_ques()){
+			flag=false;
+			$('#reg .error_ques').show();
+		}
+		if(!check_ans()){
+			flag=false;
+			$('#reg .error_ans').show();			
+		}
+		if(!check_email()){
+			flag=false;
+			$('#reg .error_email').show();			
+		}
+		if(!check_birthday()){
+			flag=false;
+			$('#reg .error_birthday').show();			
+		}		
+		if(flag){
+			$(this).submit();
+		}
+	})
+	$('#banner img').hide();
+	$('#banner img').eq(0).show();
 	//分享侧栏初始化位置
 	$("#share").css('top',(getInner().height-parseInt(getStyle($('#share').first(),'height')))/2+"px");
 	$(window).bind('scroll',function(){

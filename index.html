@@ -53,12 +53,13 @@
 				</dd>
 				<dd>Question ：
 					<select name='ques'>
-					<option value='0'>---Please Choose</option>
-					<option value='1'>What's your favorite food?</option>
-					<option value='2'>What's the name of your dog?</option>	
-					<option value='3'>where were you born?</option>
-					<option value='4'>Who's your favorite star?</option>						
+						<option value='0'>---Please Choose</option>
+						<option value='1'>What's your favorite food?</option>
+						<option value='2'>What's the name of your dog?</option>	
+						<option value='3'>where were you born?</option>
+						<option value='4'>Who's your favorite star?</option>				
 					</select>
+					<span class='error error_ques'>选择不合法，请重新选择</span>
 				</dd>		
 				<dd>Myanswer：<input type='text' name='ans' class='text'>
 					<span class='info info_ans'>请输入回答2-32位</span>
@@ -79,15 +80,18 @@
 				</dd>
 				<dd class='birthday'>MyBirthday：
 					<select name='year'>
-					<option value='0'>---Please Choose</option>	</select>
+					<option value='0'>-Year-</option>
+					</select>
 					<select name='month'>
-					<option value='0'>---Please Choose</option>	</select>
-					<select name='day'>
-					<option value='0'>---Please Choose</option>	</select>
+					<option value='0'>-Month-</option>	</select>
+					<select name='date'>
+					<option value='0'>-Date-</option></select>
+					<span class='error error_birthday'>选择不合法，请重新选择</span>
 				</dd>
 				<dd style='height:105px;'><span style='vertical-align: 85px;'>More：</span><textarea name='ps'></textarea></dd>	
-				<dd style='padding:0 0 0 120px;'>You can type in 200 words.</dd>
-				<dd style='padding:0 0 0 80px;'><input type='button' class='submit'></dd>			
+				<dd style='padding:0 0 0 120px;display: block;' class='ps'>You can type in <strong class='num'>200</strong> words.</dd>
+				<dd style='padding:0 0 0 120px;display:none;' class='ps'>Over<strong class='num'>0</strong> words.<span class='clear'>Clear</sapn></dd>				
+				<dd style='padding:0 0 0 80px;'><input type='button' name='sub' class='submit'></dd>			
 			</dl>
 		</form>
 		</div>
@@ -152,6 +156,18 @@
 				</ul>
 			</div>
 			<div id='index'>index</div>
+			<div id='banner'>
+				<a href="https://placeholder.com"><img src="http://via.placeholder.com/900x150" alt='Picture1'></a>
+				<a href="https://placeholder.com"><img src="http://via.placeholder.com/900x150" alt='Picture2'></a>
+				<a href="https://placeholder.com"><img src="http://via.placeholder.com/900x150" alt='Picture3'></a>
+				<ul>
+					<li>●</li>
+					<li>●</li>
+					<li>●</li>
+				</ul>
+				<span></span>
+				<strong></strong>				
+			</div>
 		</div>
 		<div id="share">
 			<h2>Share To</h2>

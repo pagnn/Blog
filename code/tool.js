@@ -199,6 +199,15 @@ function getScroll(){
 		left:document.documentElement.scrollLeft||document.body.scrollLeft,
 	}
 }
+//某一个值是否存在某一个数组中
+function inArray(array,value){
+	for(var i in array){
+		if(array[i]===value){
+			return true;
+		}
+	}
+	return false;
+}
 //获取innerHTML
 function getInnerText(element){
 	return (typeof element.textContent=='string')?element.textContent:element.innerText;
